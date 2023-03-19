@@ -30,12 +30,12 @@ a.	Search the Accession ID: NC_006273.2 on NCBI which contains the genome of HCM
 b.	Retrieve the HCMV genome using the following python code:
 
 from Bio import Entrez
-Entrez.email = "ashahzad2@luc.edu"
-handle = Entrez.efetch(db="nucleotide", id=["NC_006273.2"], rettype="fasta")
+Entrez.email = "youremail.com"
+handle = Entrez.efetch(db="nucleotide", id=["accession_id#"], rettype="fasta")
 records = handle.read()
 print (records)
-with open ("HCMV.fasta", "w") as f:
- f.write(records)
+with open ("file_name.fasta", "w") as f:
+ 	f.write(records)
 
 c.	This code retrieves the genome from NCBI fasta format 
 d.	Copy the file into desired directory 
