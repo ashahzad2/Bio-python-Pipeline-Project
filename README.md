@@ -14,20 +14,33 @@ o	De novo Assembly: Reads are constructed into longer sequences (contigs then sc
 
 Commands:
 1.	Retrieved the 4 HCMV transcriptomes.
+
 a.	Look up each provided SRA file on NCBI.
+
 b.	Click on the Run ID
+
 c.	Click on Data Access
+
 d.	Copy the AWS location link address.
+
 e.	Wget the link address on pipeline project directory
+
 f.	Repeated these steps for all of the donor files.
+
 g.	Uncompressed the data using fastq dump.
+
 h.	Fastq-dump -I –split-files SRR(File)
+
 i.	Record the number of read pairs of each file before Bowtie2.
 
 
+
 2.	Genome Assembly
+
 a.	Search the Accession ID: NC_006273.2 on NCBI which contains the genome of HCMV.
+
 b.	Retrieve the HCMV genome using the following python code:
+
 
 from Bio import Entrez
 Entrez.email = "youremail.com"
@@ -36,20 +49,31 @@ records = handle.read()
 print (records)
 with open ("file_name.fasta", "w") as f:
  	f.write(records)
+	
 
 c.	This code retrieves the genome from NCBI fasta format 
+
 d.	Copy the file into desired directory 
+
 e.	Then to build the “index” to map to, use the bowtie2 command: bowtie2-build HCMV.fasta HCMV.
+
 f.	This creates 6 files labeled:
 HCMV.1.bt2, HCMV.2.bt2, HCMV.3.bt2, HCMV.4.bt2, HCMV.rev.1.bt2, HCMV.rev.2.bt2
+
 g.	Now you can index with the following command: bowtie –quiet -x HCMV -1 SRR5660030_1.fastq -2 SRR5660030_2.fastq -S HCMVmap1.sam
+
 h.	Then run a bowtie2 command that writes out just reads that map with the following command: bowtie –quiet -x HCMV -1 SRR5660030_1.fastq -2 SRR5660030_2.fastq -S HCMVmap2.sam –al -conc-gz SRR5660030_1fastq_%.fq.gz 
+
 i.	Repeated for all data until all reads have been mapped and recorded the following
 
 Donor 1 (2dpi): Had 2259287 read pairs before Bowtie2 filtering and had 1827537 read pairs after. (80.99% overall alignment rate)
+
 Donor 1 (6dpi): Had 2004530 read pairs before Bowtie2 filtering and had 1423416 read pairs after. (71.01% overall alignment rate)
+
 Donor 3 (2dpi): Had 2730258 read pairs before Bowtie2 filtering and had 1994180 read pairs after. (73.04% overall alignment rate)
+
 Donor 3 (6dpi): Had 2476889 read pairs before Bowtie2 filtering and has 1319686 read pairs after. (53.28% overall alignment rate)
+
 
 3.	Using Bowtie2 output reads, assemble all 4 transcriptomes together to produce 1 assembly via SPAdes.
 
