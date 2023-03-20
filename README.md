@@ -1,6 +1,6 @@
 # Bio-python-Pipeline-Project
 COMP 383 001
-Project Info
+Project
 -	Human herpesvirus 5 is also known as Human cytomegalovirus and is typically abbreviated as HCMV.
 
 Track 2: Genome Assembly
