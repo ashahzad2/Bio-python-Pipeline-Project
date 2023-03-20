@@ -1,9 +1,10 @@
 # Bio-python-Pipeline-Project
 COMP 383 001
 Project
--	Human herpesvirus 5 is also known as Human cytomegalovirus and is typically abbreviated as HCMV.
 
 Track 2: Genome Assembly
+-       Human herpesvirus 5 is also known as Human cytomegalovirus and is typically abbreviated as HCMV.
+      
 -	We want to compare HCMV transcriptomes 2- and 6-days post infection (dpi)
 
 	o A transcriptome is the sum total of all the messenger RNA molecules expressed from the genes of an organism.
