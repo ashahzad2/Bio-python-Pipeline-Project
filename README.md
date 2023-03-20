@@ -18,7 +18,7 @@ Track 2: Genome Assembly
 
 -	To compare to other strains, assemble these transcriptome reads.
 
--	All code comments found in main folder.
+-	All code and its comments found in main folder.
 
 
 Commands:
