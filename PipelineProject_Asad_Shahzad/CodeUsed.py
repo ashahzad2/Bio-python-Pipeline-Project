@@ -1,3 +1,15 @@
+#Retrieving fasta records from NCBI database
+from Bio import Entrez 
+Entrez.email = "youremail.com"
+handle = Entrez.efetch(db="nucleotide", id=["accession_id#"], rettype="fasta") #searching the specific accession id in the nucleotide database in fasta format
+records = handle.read() #read in the file
+print (records) 
+with open ("file_name.fasta", "w") as f:
+    f.write(records) #write the records in a fasta file
+
+    
+    
+
 #Calculating the number of contigs with a length greater than 1000
 from Bio import SeqIO #Import the SeqIO class to be able to parse the given fasta file
 contigFile = "contigs.fasta" #use the contigs.fasta file given from SPAdes
@@ -11,6 +23,8 @@ print ("This is the number of contigs with a length > 1000: " , contigNum)
 #Prints the number of contigs
 
 
+
+
 #Calculating the length of the assembly
 from Bio import SeqIO #Import the SeqIO class to be able to parse the given fasta file
 contigFile = "contigs.fasta" #use the contigs.fasta file given from SPAdes
@@ -22,6 +36,8 @@ for record in SeqIO.parse(contigFile, "fasta"): #iterate through each record in 
              
 print("This is the number of bp in the assembly: ", totalLength)
 # prints the number of base pairs in the assembly
+
+
 
 
 #Finding the longest contig
@@ -40,3 +56,8 @@ print("The longest contig from the assembly is: ", contigRecord.seq)
 #prints the entire sequence of the longest contig
 print("The longest contig from the assembly is: ", contigRecord.id)
 #prints id of the contig
+
+
+
+
+
