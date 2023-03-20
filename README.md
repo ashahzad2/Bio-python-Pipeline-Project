@@ -55,12 +55,19 @@ b.	Retrieve the HCMV genome using the following python code:
 
 
 >>> from Bio import Entrez
+>>> 
 >>> Entrez.email = "youremail.com"
+>>> 
 >>> handle = Entrez.efetch(db="nucleotide", id=["accession_id#"], rettype="fasta")
+>>> 
 >>> records = handle.read()
+>>> 
 >>> print (records)
+>>> 
 >>> with open ("file_name.fasta", "w") as f:
+>>> 
 ... 	f.write(records)
+
 	
 
 c.	This code retrieves the genome from NCBI in fasta format 
@@ -90,6 +97,7 @@ Donor 3 (6dpi): Had 2476889 read pairs before Bowtie2 filtering and has 1319686 
 3.	Using Bowtie2 output reads, assemble all 4 transcriptomes together to produce 1 assembly via SPAdes. SPAdes is a fast de novo assembler that can handle sequencing reads. Can be download here(http://cab.spbu.ru/software/spades/)
 
 Command:
+
 spades.py -k 77,99,127 -t 2 --only-assembler 
 --pe-1 1 SRR5660030_1.fastq --pe-2 1 SRR5660030_2.fastq 
 --pe-1 2 SRR5660033_1.fastq --pe-2 2 SRR5660033_2.fastq 
@@ -100,29 +108,42 @@ spades.py -k 77,99,127 -t 2 --only-assembler
 4.	You will find a new directory made for SPAdes outputs in the same working directory you ran the command. SPAdes will create a "contigs.fasta" file. Use this python code to calculate the number of contigs with a length > 1000:
 
 >>> from Bio import SeqIO
+>>> 
 >>> contigFile = "contigs.fasta"
+>>> 
 >>> contigNum = 0
 >>> 
 >>> for record in SeqIO.parse(contigFile, "fasta"):
+>>> 
 ...     if len(record.seq) > 1000:
+...
 ...             contigNum += 1
 ... 
 >>> print ("This is the number of contigs with a length > 1000: " , contigNum)
+>>> 
 #This is the number of contigs with a length > 1000:  114
 
 There are 114 contigs > 1000 bp in the assembly
 
+
 Then use this python code to calculate the length of the assembly (total number of bp in all of the contigs > 1000 bp in length):
 
 >>> from Bio import SeqIO
+>>> 
 >>> contigFile = "contigs.fasta"
+>>> 
 >>> totalLength = 0
 >>> 
+>>>
 >>> for record in SeqIO.parse(contigFile, "fasta"):
+>>> 
 ...     if len(record.seq) > 1000:
+...
 ...             totalLength += len(record.seq)
+...
 ... 
 >>> print("This is the number of bp in the assembly: ", totalLength)
+>>> 
 #This is the number of bp in the assembly:  195531
 
 There are 195531 bp in the assembly
@@ -134,23 +155,35 @@ Use this python code to retrieve the longest contig from your SPAdes assembly.
 >>> from Bio import SeqIO
 >>> 
 >>> contigFile = "contigs.fasta"
+>>> 
 >>> contigLongest = 0
+>>> 
 >>> contigRecord = None
 >>> 
+>>> 
 >>> for record in SeqIO.parse(contigFile, "fasta"):
+>>> 
 ...     if len(record.seq) > contigLongest:
+...
 ...             contigRecord = record
+...
 ...             contigLongest = len(record.seq)
+...
 ... 
 >>> print("The longest contig from the assembly is: ", contigRecord.seq)
+>>> 
 #The longest contig from the assembly is:  TGTGCGCTGTGTTTATTTTTTCTTCTGTGTCT…
+
 
 
 Make a local database of just sequences from the Betaherpesvirinase sub family:
 Retrieving sequences from NCBI:
 	Searched txid10357[Organism:exp]
+	
 	Filter to show RefSeq Collection
+	
 	Download the sequences to computer in fasta format sorted by length.
+	
 Select the top 10 hits and download it as a fasta file.
 
 Copy this file into desired directory and run the following commands to create a local database:
@@ -160,10 +193,15 @@ makeblastdb -in fileName.fasta -out dbnam -title dbname -dbtype nucl
 Now run the following python commands to BLAST the longest contig(query sequence) delimited to the local database of just sequences from the Betaherpesvirinae subfamily:
 
 >>> input_file = "contig.fasta"
+>>> 
 >>> output_file = "results.csv"
+>>> 
 >>> blast_cmd = 'blastn -query ' +input_file+ -db Betaherpesvirinae -out '+output_file+' -outfmt "6 sacc pident length qstart qend sstart send bitscore evalue stitle"
+>>> 
 >>> import os
+>>> 
 >>> os.system(blast_cmd)
+>>> 
 
 BLAST results will be created in the working directory as results.csv. It will display the 10 ten hits, which are the virus strains your assembly closest to.
 The following is displayed for your top 10 hits:
