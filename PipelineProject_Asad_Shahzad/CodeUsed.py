@@ -71,3 +71,6 @@ blast_cmd = 'blastn -query ' +input_file+ -db Betaherpesvirinae -out '+output_fi
 import os
 os.system(blast_cmd)
 #creates the BLAST results in the working directory as results.csv
+
+
+
