@@ -5,14 +5,22 @@ Project Info
 
 Track 2: Genome Assembly
 -	We want to compare HCMV transcriptomes 2- and 6-days post infection (dpi)
-o	A transcriptome is the sum total of all the messenger RNA molecules expressed from the genes of an organism.
+
+	o A transcriptome is the sum total of all the messenger RNA molecules expressed from the genes of an organism.
+	
 -	We will achieve this through genome assembly (Track 2)
-o	Mapping: Reads are mapped to the available known or reference genome rather than assembled to each other
-o	De novo Assembly: Reads are constructed into longer sequences (contigs then scaffolds)
+
+       o Mapping: Reads are mapped to the available known or reference genome rather than assembled to each other
+       
+       o De novo Assembly: Reads are constructed into longer sequences (contigs then scaffolds)
+
 -	Which strains are most similar to these patient samples?
+
 -	To compare to other strains, assemble these transcriptome reads.
 
+
 Commands:
+
 1.	Retrieved the 4 HCMV transcriptomes.
 
 a.	Look up each provided SRA file on NCBI.
