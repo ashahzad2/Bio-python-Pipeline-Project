@@ -3,6 +3,8 @@ COMP 383 001
 Project
 
 Track 2: Genome Assembly
+       
+     
 -       Human herpesvirus 5 is also known as Human cytomegalovirus and is typically abbreviated as HCMV.
       
 -	We want to compare HCMV transcriptomes 2- and 6-days post infection (dpi)
