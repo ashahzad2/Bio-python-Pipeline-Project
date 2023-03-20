@@ -60,4 +60,14 @@ print("The longest contig from the assembly is: ", contigRecord.id)
 
 
 
+#BLASTing from Python
+input_file = "contig.fasta" #contructing a string for the contigs file
+output_file = "results.csv" #contructing a string for the output file
+blast_cmd = 'blastn -query ' +input_file+ -db Betaherpesvirinae -out '+output_file+' -outfmt "6 sacc pident length qstart qend sstart send bitscore evalue stitle" 
+#this blast command specifies the type of blast we are running (blastn), what the query file is, the local database, output file and the outfmt output
+#the outfmt output allows a tab delimited output and allows us to specify the information we want from BLAST for our top ten hits
 
+#the blast command is run on an os system call, which takes the string and run through terminal
+import os
+os.system(blast_cmd)
+#creates the BLAST results in the working directory as results.csv
