@@ -1,6 +1,6 @@
 # Bio-python-Pipeline-Project
 COMP 383 001
-Project
+Computational Biology
 
 Track 2: Genome Assembly
        
